@@ -5,3 +5,24 @@
     --font-color-light: #deff78;
     --font-color-dark: #053631;
 }
+
+.index-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: var(--primary-color);
+}
+
+.logo {
+    height: 15%;
+    width: 100%;
+    background-color: var(--secondary-color);
+}
+
+.logo img {
+    height: 100%;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
