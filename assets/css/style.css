@@ -513,6 +513,30 @@ a {
     border-radius: var(--radius-full);
 }
 
+/* Diet Badges */
+.diet-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 800;
+    z-index: 2;
+    box-shadow: var(--shadow-sm);
+    letter-spacing: 0.5px;
+}
+
+.badge-vegan {
+    background: var(--green);
+    color: var(--white);
+}
+
+.badge-vega {
+    background: #FFC107;
+    color: var(--gray-800);
+}
+
 .product-card .btn-add {
     background: var(--orange);
     color: var(--white);
@@ -950,6 +974,71 @@ a {
     font-size: 1.3rem;
     opacity: .8;
     margin-top: 32px;
+}
+
+/* ===========================================================
+   ⑤ PAYMENT SCREEN  (payment.php)
+   =========================================================== */
+.payment-screen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--gray-100);
+}
+
+.payment-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+}
+
+.payment-content h1 {
+    font-size: 2.5rem;
+    color: var(--gray-800);
+    margin-bottom: 24px;
+}
+
+.payment-total-display {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--green);
+    margin-bottom: 48px;
+    font-variant-numeric: tabular-nums;
+}
+
+.payment-instructions {
+    font-size: 1.8rem;
+    color: var(--gray-600);
+    margin-bottom: 40px;
+}
+
+.terminal-animation {
+    font-size: 8rem;
+    position: relative;
+    margin-top: 32px;
+}
+
+.terminal-icon {
+    display: inline-block;
+    animation: pulse-terminal 2s infinite;
+}
+
+@keyframes pulse-terminal {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* Scrollbar */

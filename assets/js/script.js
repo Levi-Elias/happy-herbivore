@@ -35,8 +35,9 @@ const translations = {
         pickup_label: 'Your pickup number is',
         returning: 'Returning to home in',
         seconds: 'seconds…',
-        payment_instr: 'Follow instructions on the terminal',
-        processing: 'Processing payment...',
+        payment: 'Payment',
+        total_to_pay: 'Total to Pay',
+        tap_card: 'Please tap your card on the terminal',
 
         // Categories
         cat_1: 'Breakfast',
@@ -99,6 +100,9 @@ const translations = {
         seconds: 'seconden…',
         payment_instr: 'Volg de instructies op het betaalapparaat',
         processing: 'Betaling verwerken...',
+        payment: 'Betaling',
+        total_to_pay: 'Totaal te betalen',
+        tap_card: 'Houd uw kaart tegen het apparaat',
 
         // Categories
         cat_1: 'Ontbijt',
@@ -369,20 +373,40 @@ function renderCart() {
 }
 
 /* =======================
-   PAYMENT FLOW (V3)
+   PAYMENT FLOW (V5)
    ======================= */
 function initiatePayment() {
+    // Redirect to separate payment screen
+    window.location.href = 'payment.php';
+}
+
+function handlePaymentScreen() {
+    const totalEl = document.getElementById('payment-total-display');
+    if (!totalEl) return;
+
     const cart = getCart();
-    if (cart.length === 0) return;
+    if (cart.length === 0) {
+        window.location.href = 'index.php'; // Should not happen
+        return;
+    }
 
-    // Show modal
-    const modal = document.getElementById('payment-modal');
-    if (modal) modal.classList.add('active');
+    // Calc total
+    const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    const total = subtotal + (subtotal * TAX_RATE);
+    totalEl.textContent = '€\u00A0' + formatPrice(total);
 
-    // Simulate payment interaction (4 seconds)
+    // Show popup immediately or after short delay? User said "waar dan die popup op komt"
+    // Let's show it after 1 second
     setTimeout(() => {
-        submitOrder();
-    }, 4000);
+        const modal = document.getElementById('payment-modal');
+        if (modal) modal.classList.add('active');
+
+        // Then simulate successful payment after 4 more seconds
+        setTimeout(() => {
+            submitOrder(); // Reuse logic
+        }, 4000);
+
+    }, 1000);
 }
 
 async function submitOrder() {
@@ -406,6 +430,7 @@ async function submitOrder() {
             window.location.href = `confirmation.php?pickup=${data.pickup_number}&order_id=${data.order_id}&total=${data.total}`;
         } else {
             alert('Error: ' + (data.error || 'Could not place order'));
+            // Hide popup if error
             const modal = document.getElementById('payment-modal');
             if (modal) modal.classList.remove('active');
         }
@@ -460,4 +485,5 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCartBadge();
     updateCartBar();
     initSlideshow();
+    handlePaymentScreen(); // Only runs if on payment page
 });

@@ -32,6 +32,16 @@ foreach ($allProducts as $prod) {
     $productsByCategory[$prod['category_id']][] = $prod;
 }
 
+// Diet tags map
+// Default is Vegan (1), Vegetarian (2)
+$dietMap = [
+    2 => 'vegetarian', // Garden Breakfast Wrap (Eggs)
+    10 => 'vegetarian', // Halloumi Toastie
+    18 => 'vegetarian', // Greek Yogurt Ranch
+    28 => 'vegetarian', // Duplicate of 18
+    33 => 'vegetarian', // Duplicate of 18
+];
+
 // Default to first category
 $activeCatId = $categories[0]['category_id'] ?? 1;
 ?>
@@ -72,20 +82,27 @@ $activeCatId = $categories[0]['category_id'] ?? 1;
                 ?>
                 <div class="product-grid category-group <?= $catId == $activeCatId ? '' : 'hidden' ?>"
                     data-cat-id="<?= $catId ?>">
-                    <?php foreach ($prods as $prod): ?>
+                    <?php foreach ($prods as $prod):
+                        $diet = $dietMap[$prod['product_id']] ?? 'vegan';
+                        $dietLabel = $diet === 'vegan' ? 'VEGAN' : 'VEGA';
+                        $dietClass = $diet === 'vegan' ? 'badge-vegan' : 'badge-vega';
+                        ?>
                         <div class="product-card" id="card-<?= $prod['product_id'] ?>">
-                            <img src="<?= htmlspecialchars($prod['image'] ?? 'assets/img/logo.png') ?>"
-                                alt="<?= htmlspecialchars($prod['name']) ?>" class="card-img">
+                            <div class="card-img-wrapper" style="position:relative;">
+                                <img src="<?= htmlspecialchars($prod['image'] ?? 'assets/img/logo.png') ?>"
+                                    alt="<?= htmlspecialchars($prod['name']) ?>" class="card-img">
+                                <span class="diet-badge <?= $dietClass ?>" data-t="diet_<?= $diet ?>"><?= $dietLabel ?></span>
+                            </div>
                             <div class="card-body">
-                                <div class="card-name"><?= htmlspecialchars($prod['name']) ?></div>
-                                <div class="card-desc" data-t-desc="<?= $prod['product_id'] ?>">
-                                    <?= htmlspecialchars($prod['description'] ?? '') ?></div>
+                                <div>
+                                    <div class="card-name"><?= htmlspecialchars($prod['name']) ?></div>
+                                    <div class="card-desc" data-t-desc="<?= $prod['product_id'] ?>">
+                                        <?= htmlspecialchars($prod['description'] ?? '') ?>
+                                    </div>
+                                </div>
                                 <div class="card-footer">
                                     <span
                                         class="card-price">&euro;&nbsp;<?= number_format($prod['price'], 2, ',', '.') ?></span>
-                                    <?php if ($prod['kcal']): ?>
-                                        <span class="card-kcal"><?= $prod['kcal'] ?> kcal</span>
-                                    <?php endif; ?>
                                     <button class="btn-add"
                                         onclick="addToCart(<?= $prod['product_id'] ?>, '<?= addslashes($prod['name']) ?>', <?= $prod['price'] ?>, '<?= addslashes($prod['image'] ?? 'assets/img/logo.png') ?>')"
                                         data-t="add">Add</button>
@@ -110,6 +127,4 @@ $activeCatId = $categories[0]['category_id'] ?? 1;
             <button class="btn-orange" onclick="goToCheckout()" data-t="view_order">View Order</button>
         </div>
     </div>
-</div>
-
-<?php include 'assets/includes/footer.php'; ?>
+</div><?php include 'assets/includes/footer.php'; ?>
