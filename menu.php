@@ -66,10 +66,10 @@ $activeCatId = $categories[0]['category_id'] ?? 1;
             <h2 data-t="categories">Categories</h2>
             <?php foreach ($categories as $cat): ?>
                 <button class="cat-btn <?= $cat['category_id'] == $activeCatId ? 'active' : '' ?>"
-                    data-cat-id="<?= $cat['category_id'] ?>" data-t="cat_<?= $cat['category_id'] ?>"
+                    data-cat-id="<?= $cat['category_id'] ?>"
                     onclick="switchCategory(this, <?= $cat['category_id'] ?>)">
                     <span class="cat-icon"><?= $icons[$cat['category_id']] ?? '🍽️' ?></span>
-                    <span><?= htmlspecialchars($cat['name']) ?></span>
+                    <span data-t="cat_<?= $cat['category_id'] ?>"><?= htmlspecialchars($cat['name']) ?></span>
                 </button>
             <?php endforeach; ?>
         </div>
