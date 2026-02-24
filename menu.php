@@ -52,10 +52,6 @@ $activeCatId = $categories[0]['category_id'] ?? 1;
     <div class="kiosk-header">
         <img src="assets/img/logo.png" alt="Happy Herbivore" class="header-logo">
         <div class="lang-flags-header">
-            <img src="assets/img/flag_nl.png" alt="NL" title="Nederlands" onclick="setLanguage('nl')" class="flag-btn"
-                id="flag-nl">
-            <img src="assets/img/flag_uk.png" alt="EN" title="English" onclick="setLanguage('en')"
-                class="flag-btn active" id="flag-en">
         </div>
     </div>
 
