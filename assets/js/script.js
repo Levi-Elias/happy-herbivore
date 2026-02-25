@@ -259,8 +259,8 @@ function clearCart() {
 
 function cancelOrder() {
     clearCart();
-    const cartBar = document.getElementById('cart-bar');
-    if (cartBar) cartBar.classList.add('hidden');
+    // const cartBar = document.getElementById('cart-bar');
+    // if (cartBar) cartBar.classList.add('hidden');
     window.location.href = 'index.php';
 }
 
@@ -274,9 +274,9 @@ function updateCartBadge() {
     const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
     if (totalItems > 0) {
         badge.textContent = totalItems;
-        badge.classList.remove('hidden');
+        // badge.classList.remove('hidden');
     } else {
-        badge.classList.add('hidden');
+        // badge.classList.add('hidden');
     }
 }
 
@@ -295,13 +295,8 @@ function updateCartBar() {
     const countEl = document.getElementById('cart-bar-count');
     const totalEl = document.getElementById('cart-bar-total');
 
-    if (totalItems > 0) {
-        bar.classList.remove('hidden');
-        if (countEl) countEl.textContent = totalItems;
-        if (totalEl) totalEl.textContent = '€\u00A0' + formatPrice(total);
-    } else {
-        bar.classList.add('hidden');
-    }
+    if (countEl) countEl.textContent = totalItems;
+    if (totalEl) totalEl.textContent = '€\u00A0' + formatPrice(total);
 }
 
 /* =======================
