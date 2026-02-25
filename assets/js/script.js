@@ -261,6 +261,7 @@ function cancelOrder() {
     clearCart();
     const cartBar = document.getElementById('cart-bar');
     if (cartBar) cartBar.classList.add('hidden');
+    window.location.href = 'index.php';
 }
 
 /* =======================

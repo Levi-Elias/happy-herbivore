@@ -51,8 +51,6 @@ $activeCatId = $categories[0]['category_id'] ?? 1;
     <!-- Header -->
     <div class="kiosk-header">
         <img src="assets/img/logo.png" alt="Happy Herbivore" class="header-logo">
-        <div class="lang-flags-header">
-        </div>
     </div>
 
     <!-- Body: sidebar + grid -->
@@ -123,4 +121,5 @@ $activeCatId = $categories[0]['category_id'] ?? 1;
             <button class="btn-orange" onclick="goToCheckout()" data-t="view_order">View Order</button>
         </div>
     </div>
-</div><?php include 'assets/includes/footer.php'; ?>
+</div>
+<?php include 'assets/includes/footer.php'; ?>
