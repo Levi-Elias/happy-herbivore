@@ -462,6 +462,14 @@ function initSlideshow() {
         current = (current + 1) % slides.length;
         slides[current].classList.add('active');
     }, 5000);
+
+    // Add click handler to slideshow for navigation to menu
+    const slideshow = document.getElementById('slideshow');
+    if (slideshow) {
+        slideshow.addEventListener('click', () => {
+            window.location.href = 'menu.php';
+        });
+    }
 }
 
 function formatPrice(n) {
