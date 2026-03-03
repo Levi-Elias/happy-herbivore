@@ -189,13 +189,12 @@ a {
 
 /* ---------- Cancel button ---------- */
 .btn-cancel {
-    background: transparent;
+    background: var(--gray-600);
     color: var(--white);
-    padding: 25px 75px;
+    padding: 25px 100px;
     border-radius: 25px;
     font-size: 1.2rem;
     font-weight: 700;
-    border: 3px solid rgba(255, 255, 255, .5);
     transition: var(--transition);
 }
 
@@ -523,7 +522,7 @@ a {
 
 .badge-vegan {
     background: var(--green);
-    color: var(--white);
+    color: var(--black);
 }
 
 .badge-vega {
@@ -575,12 +574,8 @@ a {
 .cart-bar {
     background: var(--green-dark);
     padding: 24px 40px;
-    /* Bigger */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     box-shadow: 0 -4px 30px rgba(0, 0, 0, .2);
-    z-index: 20;
+    /* z-index: 20; */
     transition: transform .35s ease, opacity .35s ease;
 }
 
@@ -632,6 +627,7 @@ a {
 
 .cart-bar-actions {
     display: flex;
+    text-align: left;
     gap: 20px;
     align-items: center;
 }
