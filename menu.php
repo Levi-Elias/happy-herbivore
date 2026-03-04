@@ -60,8 +60,7 @@ $activeCatId = $categories[0]['category_id'] ?? 1;
             <h2 data-t="categories">Categories</h2>
             <?php foreach ($categories as $cat): ?>
                 <button class="cat-btn <?= $cat['category_id'] == $activeCatId ? 'active' : '' ?>"
-                    data-cat-id="<?= $cat['category_id'] ?>"
-                    onclick="switchCategory(this, <?= $cat['category_id'] ?>)">
+                    data-cat-id="<?= $cat['category_id'] ?>" onclick="switchCategory(this, <?= $cat['category_id'] ?>)">
                     <span class="cat-icon"><?= $icons[$cat['category_id']] ?? '🍽️' ?></span>
                     <span data-t="cat_<?= $cat['category_id'] ?>"><?= htmlspecialchars($cat['name']) ?></span>
                 </button>
@@ -113,12 +112,12 @@ $activeCatId = $categories[0]['category_id'] ?? 1;
     <div class="cart-bar" id="cart-bar">
         <div class="cart-bar-actions">
             <button class="btn-cancel" onclick="cancelOrder()" data-t="cancel_order">Cancel Order</button>
-            <button class="btn-orange" onclick="goToCheckout()" data-t="view_order">
+            <button class="btn-orange" onclick="goToCheckout()">
                 <div class="cart-bar-info">
                     <span class="cart-bar-count" id="cart-bar-count">0</span>
                     <span data-t="items_in_order">items in your order</span>
                     <span class="cart-bar-total" id="cart-bar-total">&euro;&nbsp;0,00</span>
-    </div>
+                </div>
 
             </button>
         </div>

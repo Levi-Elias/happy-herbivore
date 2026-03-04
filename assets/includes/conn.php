@@ -1,8 +1,14 @@
 <?php
+// $servername = "localhost";
+// $dbname = "kiosk";
+// $username = "root";
+// $password = "";
+
 $servername = "localhost";
-$dbname = "kiosk";
-$username = "root";
-$password = "";
+$dbname = "u240669_kiosk";
+$username = "u240669_kiosk";
+$password = "DeHQpF5p9KQgrPph7zgj";
+
 
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
