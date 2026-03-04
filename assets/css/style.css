@@ -52,6 +52,27 @@ body {
     -webkit-tap-highlight-color: transparent;
     user-select: none;
     cursor: default;
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -webkit-app-region: no-drag;
+}
+
+/* Touch-only devices: hide cursor */
+@media (hover: none) and (pointer: coarse) {
+    html,
+    body {
+        cursor: none;
+    }
+    button {
+        cursor: none;
+    }
+    a {
+        cursor: none;
+    }
+    img {
+        cursor: none;
+    }
 }
 
 img {
@@ -87,7 +108,7 @@ a {
 }
 
 .kiosk-header .header-logo {
-    height: 85px;
+    height: 131px;
     /* Bigger navbar logo */
     width: auto;
 }
@@ -114,7 +135,7 @@ a {
 
 .lang-flags-header .flag-btn {
     width: 52px;
-    height: 36px;
+    height: 52px;
     border-radius: 6px;
     box-shadow: var(--shadow-sm);
     cursor: pointer;
@@ -122,10 +143,22 @@ a {
     object-fit: cover;
     opacity: .6;
     border: 2px solid transparent;
+    touch-action: manipulation;
 }
 
-.lang-flags-header .flag-btn:hover {
-    opacity: .9;
+/* Only apply hover on devices that support it */
+@media (hover: hover) and (pointer: fine) {
+    .lang-flags-header .flag-btn:hover {
+        opacity: .9;
+    }
+}
+
+/* Touch press state */
+@media (hover: none) and (pointer: coarse) {
+    .lang-flags-header .flag-btn:active {
+        opacity: .9;
+        transform: scale(0.98);
+    }
 }
 
 .lang-flags-header .flag-btn.active {
@@ -147,10 +180,19 @@ a {
     justify-content: center;
     font-size: 1.8rem;
     transition: var(--transition);
+    touch-action: manipulation;
 }
 
-.btn-back:hover {
-    background: rgba(255, 255, 255, .3);
+@media (hover: hover) and (pointer: fine) {
+    .btn-back:hover {
+        background: rgba(255, 255, 255, .3);
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .btn-back:active {
+        background: rgba(255, 255, 255, .3);
+    }
 }
 
 /* ---------- Shared: Orange CTA Button ---------- */
@@ -181,10 +223,20 @@ a {
     font-size: 1.3rem;
     font-weight: 700;
     transition: var(--transition);
+    touch-action: manipulation;
+    min-height: 48px;
 }
 
-.btn-gray:hover {
-    background: var(--gray-300);
+@media (hover: hover) and (pointer: fine) {
+    .btn-gray:hover {
+        background: var(--gray-300);
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .btn-gray:active {
+        background: var(--gray-300);
+    }
 }
 
 /* ---------- Cancel button ---------- */
@@ -202,7 +254,7 @@ a {
 .btn-place {
     background: var(--orange);
     color: var(--white);
-    padding: 25px 120px;
+    padding: 25px 60px;
     /* Larger */
     border-radius: 25px;
     font-size: 2rem;
@@ -224,10 +276,20 @@ a {
     font-size: 2rem;
     font-weight: 700;
     transition: var(--transition);
+    touch-action: manipulation;
+    min-height: 48px;
 }
 
-.btn-more:hover {
-    background: var(--gray-300);
+@media (hover: hover) and (pointer: fine) {
+    .btn-more:hover {
+        background: var(--gray-300);
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .btn-more:active {
+        background: var(--gray-300);
+    }
 }
 
 .btn-cancelo {
@@ -269,18 +331,27 @@ a {
 }
 
 .lang-flags img {
-    width: 64px;
-    height: 44px;
+    width: 80px;
+    height: 64px;
     /* Larger */
     border-radius: 6px;
     box-shadow: var(--shadow-md);
     cursor: pointer;
     transition: var(--transition);
     object-fit: cover;
+    touch-action: manipulation;
 }
 
-.lang-flags img:hover {
-    transform: scale(1.1);
+@media (hover: hover) and (pointer: fine) {
+    .lang-flags img:hover {
+        transform: scale(1.1);
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .lang-flags img:active {
+        transform: scale(0.95);
+    }
 }
 
 /* Logo */
@@ -340,11 +411,22 @@ a {
     flex-shrink: 0;
     animation: pulse-glow 2.5s ease-in-out infinite;
     display: none;
+    touch-action: manipulation;
+    min-height: 80px;
 }
 
-.btn-start:hover {
-    background: var(--orange-hover);
-    transform: scale(1.04);
+@media (hover: hover) and (pointer: fine) {
+    .btn-start:hover {
+        background: var(--orange-hover);
+        transform: scale(1.04);
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .btn-start:active {
+        background: var(--orange-hover);
+        transform: scale(0.96);
+    }
 }
 
 .btn-start:active {
@@ -434,10 +516,21 @@ a {
     border: 2px solid var(--gray-300);
     transition: var(--transition);
     white-space: nowrap;
+    touch-action: manipulation;
+    cursor: pointer;
+    min-height: 48px;
 }
 
-.cat-btn:hover {
-    background: var(--gray-100);
+@media (hover: hover) and (pointer: fine) {
+    .cat-btn:hover {
+        background: var(--gray-100);
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .cat-btn:active {
+        background: var(--gray-100);
+    }
 }
 
 .cat-btn.active {
@@ -480,10 +573,19 @@ a {
     flex-direction: column;
     height: 100%;
     /* Ensure full height */
+    touch-action: manipulation;
 }
 
-.product-card:hover {
-    box-shadow: var(--shadow-lg);
+@media (hover: hover) and (pointer: fine) {
+    .product-card:hover {
+        box-shadow: var(--shadow-lg);
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .product-card:active {
+        box-shadow: var(--shadow-lg);
+    }
 }
 
 .product-card .card-img {
@@ -582,11 +684,23 @@ a {
     font-size: 1.1rem;
     font-weight: 800;
     transition: var(--transition);
+    touch-action: manipulation;
+    cursor: pointer;
+    min-height: 44px;
 }
 
-.product-card .btn-add:hover {
-    background: var(--orange-hover);
-    transform: scale(1.05);
+@media (hover: hover) and (pointer: fine) {
+    .product-card .btn-add:hover {
+        background: var(--orange-hover);
+        transform: scale(1.05);
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .product-card .btn-add:active {
+        background: var(--orange-hover);
+        transform: scale(0.98);
+    }
 }
 
 .product-card .btn-add:active {
@@ -785,10 +899,22 @@ a {
     align-items: center;
     justify-content: center;
     transition: var(--transition);
+    touch-action: manipulation;
+    cursor: pointer;
+    min-height: 56px;
+    min-width: 56px;
 }
 
-.qty-controls .qty-btn:hover {
-    background: var(--gray-200);
+@media (hover: hover) and (pointer: fine) {
+    .qty-controls .qty-btn:hover {
+        background: var(--gray-200);
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .qty-controls .qty-btn:active {
+        background: var(--gray-200);
+    }
 }
 
 .qty-controls .qty-value {
@@ -820,10 +946,20 @@ a {
     font-size: 1.4rem;
     transition: var(--transition);
     flex-shrink: 0;
+    touch-action: manipulation;
+    cursor: pointer;
 }
 
-.btn-delete:hover {
-    background: var(--red-100);
+@media (hover: hover) and (pointer: fine) {
+    .btn-delete:hover {
+        background: #ffe6e6;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .btn-delete:active {
+        background: #ffe6e6;
+    }
 }
 
 /* Order summary — BIGGER */
