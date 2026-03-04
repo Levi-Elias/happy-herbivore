@@ -115,16 +115,11 @@ $activeCatId = $categories[0]['category_id'] ?? 1;
             <button class="btn-cancel" onclick="cancelOrder()" data-t="cancel_order">Cancel Order</button>
             <button class="btn-orange" onclick="goToCheckout()" data-t="view_order">
                 <div class="cart-bar-info">
-        <span class="cart-bar-count" id="cart-bar-count">0</span>
-        <span data-t="items_in_order">items in your order</span>
-        <span class="cart-bar-total" id="cart-bar-total">&euro;&nbsp;0,00</span>
-    </div>
-                <!-- <span class="cart-bar-count" id="cart-bar-count">0</span>
-               
-                <div class="btn-orange-text">
-                    <span>View Order</span>
+                    <span class="cart-bar-count" id="cart-bar-count">0</span>
+                    <span data-t="items_in_order">items in your order</span>
                     <span class="cart-bar-total" id="cart-bar-total">&euro;&nbsp;0,00</span>
-                </div> -->
+    </div>
+
             </button>
         </div>
     </div>
