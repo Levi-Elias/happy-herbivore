@@ -39,9 +39,9 @@ include 'assets/includes/header.php';
             <div class="summary-actions">
                 <button class="btn-more" onclick="window.location.href='menu.php'" data-t="add_more">Add More
                     Items</button>
-                <button class="btn-cancelo" onclick="cancelOrder()" data-t="cancel_order">Cancel 
-                    Order</button>
                 <button class="btn-place" id="btn-checkout" onclick="initiatePayment()" data-t="place_order">Place
+                    Order</button>
+                <button class="btn-cancelo" onclick="cancelOrder()" data-t="cancel_order">Cancel
                     Order</button>
             </div>
         </div>
