@@ -30,7 +30,88 @@ $total = isset($_GET['total']) ? floatval($_GET['total']) : 0;
     <p class="countdown" id="countdown"></p>
 </div>
 
+<!-- Hidden receipt for printing -->
+<div id="receipt" class="receipt">
+    <div class="receipt-header">
+        <div class="receipt-logo">🌿 Happy Herbivore</div>
+        <div class="receipt-tagline">Healthy in a Hurry</div>
+    </div>
+    <div class="receipt-divider">================================</div>
+    <div class="receipt-meta">
+        <div>Bestelling #<span id="r-order-id"></span></div>
+        <div id="r-datetime"></div>
+    </div>
+    <div class="receipt-divider">================================</div>
+    <div id="r-items" class="receipt-items"></div>
+    <div class="receipt-divider">--------------------------------</div>
+    <div class="receipt-totals">
+        <div class="receipt-row"><span>Subtotaal</span><span id="r-subtotal"></span></div>
+        <div class="receipt-row"><span>BTW (9%)</span><span id="r-tax"></span></div>
+        <div class="receipt-divider">================================</div>
+        <div class="receipt-row receipt-total"><span>TOTAAL</span><span id="r-total"></span></div>
+    </div>
+    <div class="receipt-divider">================================</div>
+    <div class="receipt-payment">Betaald met pinpas ✓</div>
+    <div class="receipt-pickup">
+        <div>Ophaalnummer</div>
+        <div class="receipt-pickup-number" id="r-pickup"></div>
+    </div>
+    <div class="receipt-divider">================================</div>
+    <div class="receipt-footer">
+        <div>Bedankt & Eet Smakelijk!</div>
+        <div class="receipt-website">happyherbivore.nl</div>
+    </div>
+</div>
+
 <script>
+    // --- Receipt printing ---
+    (function printReceipt() {
+        const receiptData = sessionStorage.getItem('hh_receipt');
+        if (!receiptData) return;
+
+        try {
+            const r = JSON.parse(receiptData);
+            document.getElementById('r-order-id').textContent = r.order_id;
+            document.getElementById('r-pickup').textContent = '#' + String(r.pickup_number).padStart(2, '0');
+
+            // Date/time
+            const now = new Date();
+            document.getElementById('r-datetime').textContent =
+                now.toLocaleDateString('nl-NL') + ' ' + now.toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' });
+
+            // Items
+            const itemsEl = document.getElementById('r-items');
+            let itemsHtml = '';
+            if (r.items && r.items.length) {
+                r.items.forEach(item => {
+                    const qty = item.qty || item.quantity || 1;
+                    const price = parseFloat(item.price);
+                    const lineTotal = (qty * price).toFixed(2).replace('.', ',');
+                    const name = item.name || item.product_name || 'Item';
+                    itemsHtml += '<div class="receipt-item">';
+                    itemsHtml += '<span>' + qty + 'x ' + name + '</span>';
+                    itemsHtml += '<span>€ ' + lineTotal + '</span>';
+                    itemsHtml += '</div>';
+                });
+            }
+            itemsEl.innerHTML = itemsHtml;
+
+            // Totals
+            document.getElementById('r-subtotal').textContent = '€ ' + parseFloat(r.subtotal).toFixed(2).replace('.', ',');
+            document.getElementById('r-tax').textContent = '€ ' + parseFloat(r.tax).toFixed(2).replace('.', ',');
+            document.getElementById('r-total').textContent = '€ ' + parseFloat(r.total).toFixed(2).replace('.', ',');
+
+            // Clean up
+            sessionStorage.removeItem('hh_receipt');
+
+            // Auto-print after short delay to let the page render
+            setTimeout(() => { window.print(); }, 500);
+        } catch (e) {
+            console.error('Receipt error:', e);
+        }
+    })();
+
+    // --- Cart cleanup & countdown ---
     sessionStorage.removeItem('hh_cart');
 
     let seconds = 10;

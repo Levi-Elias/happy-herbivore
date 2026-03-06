@@ -1,13 +1,13 @@
 <?php
-$servername = "localhost";
-$dbname = "kiosk";
-$username = "root";
-$password = "";
-
 // $servername = "localhost";
-// $dbname = "u240669_kiosk";
-// $username = "u240669_kiosk";
-// $password = "DeHQpF5p9KQgrPph7zgj";
+// $dbname = "kiosk";
+// $username = "root";
+// $password = "";
+
+$servername = "localhost";
+$dbname = "u240669_kiosk";
+$username = "u240669_kiosk";
+$password = "DeHQpF5p9KQgrPph7zgj";
 
 
 try {

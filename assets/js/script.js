@@ -445,6 +445,15 @@ async function submitOrder() {
         const data = await response.json();
 
         if (data.success) {
+            // Save receipt data for printing on confirmation page
+            sessionStorage.setItem('hh_receipt', JSON.stringify({
+                order_id: data.order_id,
+                pickup_number: data.pickup_number,
+                items: data.items,
+                subtotal: data.subtotal,
+                tax: data.tax,
+                total: data.total,
+            }));
             window.location.href = `confirmation.php?pickup=${data.pickup_number}&order_id=${data.order_id}&total=${data.total}`;
         } else {
             alert('Error: ' + (data.error || 'Could not place order'));
