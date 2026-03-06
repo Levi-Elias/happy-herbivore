@@ -693,10 +693,9 @@ a {
 }
 
 .product-card .card-kcal {
-    font-size: .85rem;
+    font-size: 1.1rem;
     font-weight: 600;
-    color: var(--gray-600);
-    background: var(--gray-100);
+    color: var(--text-dark);
     padding: 4px 10px;
     border-radius: var(--radius-full);
 }
@@ -932,7 +931,51 @@ a {
     margin-top: 8px;
 }
 
-/* Quantity controls — BIGGER */
+/* Item details: price and calories row */
+.cart-item .item-details {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.cart-item .item-price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--green);
+}
+
+.cart-item .item-calories {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--gray-600);
+    background: var(--gray-100);
+    padding: 6px 12px;
+    border-radius: var(--radius-md);
+}
+
+/* Item stats: total calories and line total */
+.cart-item .item-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.cart-item .item-line-calories {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--green);
+}
+
+.cart-item .item-total {
+    font-size: 1.6rem;
+    font-weight: 800;
+    width: auto;
+    text-align: right;
+    flex-shrink: 0;
+}
 .qty-controls {
     display: flex;
     align-items: center;
@@ -980,7 +1023,7 @@ a {
 .cart-item .item-total {
     font-size: 1.6rem;
     font-weight: 800;
-    width: 120px;
+    width: auto;
     text-align: right;
     flex-shrink: 0;
 }
@@ -1058,6 +1101,24 @@ a {
 }
 
 .summary-row.total .value {
+    color: var(--green);
+}
+
+/* Calorie total display */
+.calorie-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    padding: 8px 0;
+    color: var(--gray-700);
+    font-weight: 600;
+}
+
+.calorie-total .label {
+    color: var(--gray-600);
+}
+
+.calorie-total .value {
     color: var(--green);
 }
 

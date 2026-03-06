@@ -27,6 +27,10 @@ include 'assets/includes/header.php';
                 <span class="label" data-t="subtotal">Subtotal</span>
                 <span class="value" id="summary-subtotal">&euro;&nbsp;0,00</span>
             </div>
+            <div class="calorie-total">
+                <span class="label" data-t="total_calories">Total Calories</span>
+                <span class="value" id="summary-calories">0 kcal</span>
+            </div>
             <div class="summary-row">
                 <span class="label" data-t="btw">BTW (9%)</span>
                 <span class="value" id="summary-tax">&euro;&nbsp;0,00</span>

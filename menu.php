@@ -92,12 +92,13 @@ $activeCatId = $categories[0]['category_id'] ?? 1;
                                     <div class="card-desc" data-t-desc="<?= $prod['product_id'] ?>">
                                         <?= htmlspecialchars($prod['description'] ?? '') ?>
                                     </div>
+                                    <div class="card-kcal"><?= $prod['kcal'] ? number_format($prod['kcal'], 0, ',', '.') . ' kcal' : '' ?></div>
                                 </div>
                                 <div class="card-footer">
                                     <span
                                         class="card-price">&euro;&nbsp;<?= number_format($prod['price'], 2, ',', '.') ?></span>
                                     <button class="btn-add"
-                                        onclick="addToCart(<?= $prod['product_id'] ?>, '<?= addslashes($prod['name']) ?>', <?= $prod['price'] ?>, '<?= addslashes($prod['image'] ?? 'assets/img/logo.png') ?>')"
+                                        onclick="addToCart(<?= $prod['product_id'] ?>, '<?= addslashes($prod['name']) ?>', <?= $prod['price'] ?>, '<?= addslashes($prod['image'] ?? 'assets/img/logo.png') ?>', <?= $prod['kcal'] ?? 0 ?>)"
                                         data-t="add">Add</button>
                                 </div>
                             </div>

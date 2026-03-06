@@ -38,6 +38,7 @@ const translations = {
         payment: 'Payment',
         total_to_pay: 'Total to Pay',
         tap_card: 'Please tap your card on the terminal',
+        total_calories: 'Total Calories',
 
         // Categories
         cat_1: 'Breakfast',
@@ -103,6 +104,7 @@ const translations = {
         payment: 'Betaling',
         total_to_pay: 'Totaal te betalen',
         tap_card: 'Houd uw kaart tegen het apparaat',
+        total_calories: 'Totale Calorieën',
 
         // Categories
         cat_1: 'Ontbijt',
@@ -202,7 +204,16 @@ function t(key) {
    ======================= */
 function getCart() {
     try {
-        return JSON.parse(sessionStorage.getItem(CART_KEY)) || [];
+        const raw = JSON.parse(sessionStorage.getItem(CART_KEY)) || [];
+        // ensure each item has kcal and qty
+        return raw.map(item => ({
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            qty: item.qty || 0,
+            image: item.image,
+            kcal: item.kcal || 0
+        }));
     } catch {
         return [];
     }
@@ -214,13 +225,13 @@ function saveCart(cart) {
     updateCartBadge();
 }
 
-function addToCart(productId, name, price, image) {
+function addToCart(productId, name, price, image, kcal = 0) {
     const cart = getCart();
     const existing = cart.find(item => item.id === productId);
     if (existing) {
         existing.qty += 1;
     } else {
-        cart.push({ id: productId, name, price: parseFloat(price), qty: 1, image });
+        cart.push({ id: productId, name, price: parseFloat(price), qty: 1, image, kcal: parseInt(kcal) || 0 });
     }
     saveCart(cart);
 
@@ -336,19 +347,27 @@ function renderCart() {
     cart.forEach(item => {
         const lineTotal = formatPrice(item.price * item.qty);
         const unitPrice = formatPrice(item.price);
+        const itemCalories = item.kcal ? item.kcal : 0;
+        const totalItemCalories = itemCalories * item.qty;
         html += `
             <div class="cart-item" data-id="${item.id}">
                 <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}" class="item-img">
                 <div class="item-info">
                     <div class="item-name">${escapeHtml(item.name)}</div>
-                    <div class="item-price">€\u00A0${unitPrice}</div>
+                    <div class="item-details">
+                        <span class="item-price">€&nbsp;${unitPrice}</span>
+                        <span class="item-calories">${itemCalories} kcal</span>
+                    </div>
                 </div>
                 <div class="qty-controls">
                     <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">−</button>
                     <span class="qty-value">${item.qty}</span>
                     <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
                 </div>
-                <div class="item-total">€\u00A0${lineTotal}</div>
+                <div class="item-stats">
+                    <div class="item-line-calories">${totalItemCalories} kcal</div>
+                    <div class="item-total">€&nbsp;${lineTotal}</div>
+                </div>
                 <button class="btn-delete" onclick="removeFromCart(${item.id})">🗑</button>
             </div>
         `;
@@ -359,13 +378,16 @@ function renderCart() {
     const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
     const tax = subtotal * TAX_RATE;
     const total = subtotal + tax;
+    const totalCalories = cart.reduce((sum, item) => sum + ((item.kcal || 0) * item.qty), 0);
 
     const elSub = document.getElementById('summary-subtotal');
     const elTax = document.getElementById('summary-tax');
     const elTotal = document.getElementById('summary-total');
+    const elCalories = document.getElementById('summary-calories');
     if (elSub) elSub.textContent = '€\u00A0' + formatPrice(subtotal);
     if (elTax) elTax.textContent = '€\u00A0' + formatPrice(tax);
     if (elTotal) elTotal.textContent = '€\u00A0' + formatPrice(total);
+    if (elCalories) elCalories.textContent = totalCalories + ' kcal';
 }
 
 /* =======================
