@@ -92,7 +92,8 @@ $activeCatId = $categories[0]['category_id'] ?? 1;
                                     <div class="card-desc" data-t-desc="<?= $prod['product_id'] ?>">
                                         <?= htmlspecialchars($prod['description'] ?? '') ?>
                                     </div>
-                                    <div class="card-kcal"><?= $prod['kcal'] ? number_format($prod['kcal'], 0, ',', '.') . ' kcal' : '' ?></div>
+                                    <div class="card-kcal">
+                                        <?= $prod['kcal'] ? number_format($prod['kcal'], 0, ',', '.') . ' kcal' : '' ?></div>
                                 </div>
                                 <div class="card-footer">
                                     <span
