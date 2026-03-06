@@ -482,6 +482,48 @@ function escapeHtml(str) {
     return div.innerHTML;
 }
 
+/* =======================
+   IDLE TIMEOUT
+   ======================= */
+let idleTimeout;
+let popupTimeout;
+
+function resetIdleTimer() {
+    clearTimeout(idleTimeout);
+    clearTimeout(popupTimeout);
+    hideIdlePopup();
+    idleTimeout = setTimeout(showIdlePopup, 20000); // 20 seconds
+}
+
+function showIdlePopup() {
+    const popup = document.getElementById('idle-popup');
+    if (popup) {
+        popup.style.display = 'flex';
+        popupTimeout = setTimeout(goToIndex, 10000); // 10 seconds after popup
+    }
+}
+
+function hideIdlePopup() {
+    const popup = document.getElementById('idle-popup');
+    if (popup) {
+        popup.style.display = 'none';
+    }
+}
+
+function goToIndex() {
+    window.location.href = 'index.php';
+}
+
+function initIdleTimeout() {
+    if (window.location.pathname.includes('menu.php')) {
+        resetIdleTimer();
+        // Add event listeners for user activity
+        ['mousemove', 'keydown', 'touchstart', 'click'].forEach(event => {
+            document.addEventListener(event, resetIdleTimer, true);
+        });
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     currentLang = sessionStorage.getItem(LANG_KEY) || 'en';
     applyTranslations();
@@ -490,4 +532,5 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCartBar();
     initSlideshow();
     handlePaymentScreen(); // Only runs if on payment page
+    initIdleTimeout();
 });

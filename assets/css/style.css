@@ -200,8 +200,11 @@ a {
     background: var(--orange);
     color: var(--white);
     padding: 15px 40px;
+    min-width: 60%;
+    max-height: 60%;
+    min-height: 100px;
     border-radius: 25px;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 800;
     display: inline-flex;
     align-items: center;
@@ -212,6 +215,13 @@ a {
     position: relative;
     white-space: nowrap;
     z-index: 51;
+}
+
+.winkelwagen-icon {
+    width: 45px;
+    height: 45px;
+    /* Larger cart icon */
+    filter: invert(100%) sepia(0%) grayscale(100%) brightness(150%);
 }
 
 .btn-orange > .cart-bar-count {
@@ -282,6 +292,8 @@ a {
     background: var(--gray-600);
     color: var(--white);
     padding: 25px 100px;
+    min-width: 40%;
+    min-height: 100px;
     border-radius: 25px;
     font-size: 1.2rem;
     font-weight: 700;
@@ -811,6 +823,11 @@ a {
     justify-content: center;
     font-size: 1.2rem;
     font-weight: 800;
+    background-color: white;
+     color: var(--orange);
+     flex-shrink: 0;
+     position: relative;
+     z-index: 52;
 }
 
 .cart-bar-total {
@@ -1261,4 +1278,39 @@ a {
 
 .hidden {
     display: none !important;
+}
+
+/* Idle Timeout Popup */
+.idle-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.idle-popup-content {
+    background: var(--white);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    text-align: center;
+    box-shadow: var(--shadow-xl);
+    width: 400px;
+    height: 400px;
+}
+
+.idle-popup-content h2 {
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.idle-popup-content p {
+    color: var(--gray-600);
+    font-size: 18px;
 }

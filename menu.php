@@ -114,12 +114,21 @@ $activeCatId = $categories[0]['category_id'] ?? 1;
             <button class="btn-cancel" onclick="cancelOrder()" data-t="cancel_order">Cancel Order</button>
             <button class="btn-orange" onclick="goToCheckout()">
                 <div class="cart-bar-info">
-                    <span class="cart-bar-count" id="cart-bar-count">0</span>
+                    <img src="assets/img/winkelwagen-logo.png" alt="Cart" class="winkelwagen-icon">
                     <span data-t="items_in_order">items in your order</span>
+                    <span class="cart-bar-count" id="cart-bar-count">0</span>
                     <span class="cart-bar-total" id="cart-bar-total">&euro;&nbsp;0,00</span>
                 </div>
 
             </button>
+        </div>
+    </div>
+
+    <!-- Idle Timeout Popup -->
+    <div id="idle-popup" class="idle-popup">
+        <div class="idle-popup-content">
+            <h2>Bent u er nog?</h2>
+            <p>je bestelling wordt geannuleerd over 10 seconden.</p>
         </div>
     </div>
 </div>
