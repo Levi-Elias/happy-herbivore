@@ -88,7 +88,7 @@ $activeCatId = $categories[0]['category_id'] ?? 1;
                             </div>
                             <div class="card-body">
                                 <div>
-                                    <div class="card-name"><?= htmlspecialchars($prod['name']) ?></div>
+                                    <div class="card-name"><?= $prod['name'] ?></div>
                                     <div class="card-desc" data-t-desc="<?= $prod['product_id'] ?>">
                                         <?= htmlspecialchars($prod['description'] ?? '') ?>
                                     </div>
