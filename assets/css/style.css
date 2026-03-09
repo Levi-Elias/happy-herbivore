@@ -60,16 +60,20 @@ body {
 
 /* Touch-only devices: hide cursor */
 @media (hover: none) and (pointer: coarse) {
+
     html,
     body {
         cursor: none;
     }
+
     button {
         cursor: none;
     }
+
     a {
         cursor: none;
     }
+
     img {
         cursor: none;
     }
@@ -224,7 +228,7 @@ a {
     filter: invert(100%) sepia(0%) grayscale(100%) brightness(150%);
 }
 
-.btn-orange > .cart-bar-count {
+.btn-orange>.cart-bar-count {
     background: var(--white);
     color: var(--orange);
     width: 44px;
@@ -240,7 +244,7 @@ a {
     z-index: 52;
 }
 
-.btn-orange > .btn-orange-text {
+.btn-orange>.btn-orange-text {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -250,12 +254,12 @@ a {
     /* z-index: 52; */
 }
 
-.btn-orange > .btn-orange-text > span:first-child {
+.btn-orange>.btn-orange-text>span:first-child {
     font-size: 1.1rem;
     font-weight: 800;
 }
 
-.btn-orange > .btn-orange-text > .cart-bar-total {
+.btn-orange>.btn-orange-text>.cart-bar-total {
     font-size: 0.95rem;
     font-weight: 700;
     color: var(--white);
@@ -310,7 +314,7 @@ a {
     /* Larger */
     font-weight: 800;
     display: inline-flex;
-    align-items:flex-start;
+    align-items: flex-start;
     gap: 12px;
     box-shadow: var(--shadow-md);
     transition: var(--transition);
@@ -823,10 +827,10 @@ a {
     font-size: 1.2rem;
     font-weight: 800;
     background-color: white;
-     color: var(--orange);
-     flex-shrink: 0;
-     position: relative;
-     z-index: 52;
+    color: var(--orange);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 52;
 }
 
 .cart-bar-total {
@@ -976,6 +980,7 @@ a {
     text-align: right;
     flex-shrink: 0;
 }
+
 .qty-controls {
     display: flex;
     align-items: center;
@@ -1374,4 +1379,134 @@ a {
 .idle-popup-content p {
     color: var(--gray-600);
     font-size: 18px;
+}
+
+/* ===========================================================
+   ⑥ RECEIPT (hidden on screen, visible on print)
+   =========================================================== */
+.receipt {
+    display: none;
+}
+
+/* Print-only styles */
+@media print {
+
+    /* Hide everything on screen */
+    body>*:not(#receipt) {
+        display: none !important;
+    }
+
+    .confirm-screen,
+    .kiosk-header,
+    .cart-bar,
+    .payment-modal-overlay,
+    .idle-popup {
+        display: none !important;
+    }
+
+    /* Show & style the receipt */
+    .receipt {
+        display: block !important;
+        width: 72mm;
+        max-width: 72mm;
+        margin: 0 auto;
+        padding: 4mm 2mm;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 12px;
+        line-height: 1.4;
+        color: #000;
+        background: #fff;
+    }
+
+    .receipt-header {
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    .receipt-logo {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 2px;
+    }
+
+    .receipt-tagline {
+        font-size: 11px;
+        font-style: italic;
+    }
+
+    .receipt-meta {
+        text-align: center;
+        margin: 6px 0;
+        font-size: 11px;
+    }
+
+    .receipt-divider {
+        text-align: center;
+        font-size: 10px;
+        letter-spacing: -0.5px;
+        margin: 4px 0;
+        color: #333;
+    }
+
+    .receipt-items {
+        margin: 6px 0;
+    }
+
+    .receipt-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 2px 0;
+        font-size: 12px;
+    }
+
+    .receipt-totals {
+        margin: 4px 0;
+    }
+
+    .receipt-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 2px 0;
+        font-size: 12px;
+    }
+
+    .receipt-total {
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .receipt-payment {
+        text-align: center;
+        margin: 8px 0;
+        font-size: 12px;
+    }
+
+    .receipt-pickup {
+        text-align: center;
+        margin: 8px 0;
+    }
+
+    .receipt-pickup-number {
+        font-size: 28px;
+        font-weight: bold;
+        margin-top: 4px;
+    }
+
+    .receipt-footer {
+        text-align: center;
+        margin-top: 8px;
+        font-size: 12px;
+    }
+
+    .receipt-website {
+        font-size: 10px;
+        margin-top: 4px;
+        color: #555;
+    }
+
+    /* Remove page margins for thermal printers */
+    @page {
+        margin: 0;
+        size: 80mm auto;
+    }
 }

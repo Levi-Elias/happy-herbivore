@@ -83,6 +83,9 @@ try {
         'order_id' => intval($orderId),
         'pickup_number' => $pickupNumber,
         'total' => $total,
+        'subtotal' => $subtotal,
+        'tax' => $tax,
+        'items' => $items,
     ]);
 
 } catch (Exception $e) {
