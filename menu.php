@@ -51,6 +51,10 @@ $activeCatId = $categories[0]['category_id'] ?? 1;
     <!-- Header -->
     <div class="kiosk-header">
         <img src="assets/img/logo.png" alt="Happy Herbivore" class="header-logo">
+        <div class="language-switcher">
+            <img id="flag-en" src="assets/img/flag_uk.png" alt="English" title="English" class="flag-btn active" onclick="setLanguage('en')">
+            <img id="flag-nl" src="assets/img/flag_nl.png" alt="Nederlands" title="Nederlands" class="flag-btn" onclick="setLanguage('nl')">
+        </div>
     </div>
 
     <!-- Body: sidebar + grid -->
@@ -88,7 +92,7 @@ $activeCatId = $categories[0]['category_id'] ?? 1;
                             </div>
                             <div class="card-body">
                                 <div>
-                                    <div class="card-name"><?= $prod['name'] ?></div>
+                                    <div class="card-name" data-t-name="<?= $prod['product_id'] ?>"><?= htmlspecialchars($prod['name'], ENT_QUOTES, 'UTF-8') ?></div>
                                     <div class="card-desc" data-t-desc="<?= $prod['product_id'] ?>">
                                         <?= htmlspecialchars($prod['description'] ?? '') ?>
                                     </div>
@@ -112,6 +116,8 @@ $activeCatId = $categories[0]['category_id'] ?? 1;
 
     <!-- Bottom Cart Bar (hidden until items added) -->
     <div class="cart-bar" id="cart-bar">
+    <!-- Add-to-cart confirmation popup -->
+    <div id="add-popup" class="add-popup" style="display:none;"><span id="add-msg"></span></div>
         <div class="cart-bar-actions">
             <button class="btn-cancel" onclick="cancelOrder()" data-t="cancel_order">Cancel Order</button>
             <button class="btn-orange" onclick="goToCheckout()">
@@ -129,8 +135,12 @@ $activeCatId = $categories[0]['category_id'] ?? 1;
     <!-- Idle Timeout Popup -->
     <div id="idle-popup" class="idle-popup">
         <div class="idle-popup-content">
-            <h2>Bent u er nog?</h2>
-            <p>je bestelling wordt geannuleerd over 10 seconden.</p>
+            <h2 data-t="are_you_there">Bent u er nog?</h2>
+            <p>
+                <span data-t="order_will_be_cancelled">je bestelling wordt geannuleerd in</span>
+                <span id="idle-countdown">10</span> <span data-t="seconds">seconden</span>.
+            </p>
+            <button class="btn-idle-yes" onclick="resetIdleTimer()" data-t="yes_button">Ja</button>
         </div>
     </div>
 </div>

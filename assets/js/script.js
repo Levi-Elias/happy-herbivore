@@ -74,6 +74,51 @@ const translations = {
         desc_23: 'Lemon, strawberry, cucumber',
         desc_24: 'Mixed berries with almond milk',
         desc_25: 'Orange juice, sparkling water',
+
+        // Product names (English)
+        name_1: 'Morning Boost Açaí Bowl',
+        added_to_order: 'added to your order',
+        name_2: 'Garden Breakfast Wrap',
+        name_3: 'Peanut Butter & Cacao Toast',
+        name_4: 'Overnight Oats: Apple Pie Style',
+        name_5: 'Tofu Power Tahini Bowl',
+        name_6: 'Supergreen Harvest',
+        name_7: 'Mediterranean Falafel Bowl',
+        name_8: 'Warm Teriyaki Tempeh Bowl',
+        name_9: 'Zesty Chickpea Hummus Wrap',
+        name_10: 'Avocado & Halloumi Toastie',
+        name_11: 'Smoky BBQ Jackfruit Slider',
+        name_12: 'Sweet Potato Wedges',
+        name_13: 'Zucchini Fries',
+        name_14: 'Baked Falafel Bites (5 pcs)',
+        name_15: 'Mini Veggie Platter & Hummus',
+        name_16: 'Classic Hummus',
+        name_17: 'Avocado Lime Crema',
+        name_18: 'Greek Yogurt Ranch',
+        name_19: 'Spicy Sriracha Mayo',
+        name_20: 'Peanut Satay Sauce',
+        name_21: 'Green Glow Smoothie',
+        name_22: 'Iced Matcha Latte',
+        name_23: 'Fruit Infused Water',
+        name_24: 'Berry Blast Smoothie',
+        name_25: 'Citrus Cooler',
+        name_26: 'Classic Hummus',
+        name_27: 'Avocado Lime Crema',
+        name_28: 'Greek Yogurt Ranch',
+        name_29: 'Spicy Sriracha Mayo',
+        name_30: 'Peanut Satay Sauce',
+        name_31: 'Classic Hummus',
+        name_32: 'Avocado Lime Crema',
+        name_33: 'Greek Yogurt Ranch',
+        name_34: 'Spicy Sriracha Mayo',
+        name_35: 'Peanut Satay Sauce',
+
+        // Idle popup
+        are_you_there: 'Are you still there?',
+        order_will_be_cancelled: 'Your order will be cancelled in 10 seconds',
+        yes_button: 'Yes',
+        diet_vegan: 'VEGAN',
+        diet_vega: 'VEGA',
     },
     nl: {
         start_order: 'Begin Uw Bestelling',
@@ -151,6 +196,51 @@ const translations = {
         desc_33: 'Frisse Griekse yoghurt met kruiden',
         desc_34: 'Pittige sriracha mayonaise',
         desc_35: 'Rijke pindasaus',
+
+        // Product names (Dutch)
+        name_1: 'Ochtend Boost Açaí Schaal',
+        added_to_order: 'toegevoegd aan uw bestelling',
+        name_2: 'Tuin Ontbijt Wrap',
+        name_3: 'Pindakaas & Cacao Toast',
+        name_4: 'Overnacht Havermout: Appeltaart Stijl',
+        name_5: 'Tofu Kracht Tahini Schaal',
+        name_6: 'Supergroen Oogst',
+        name_7: 'Mediterrane Falafel Schaal',
+        name_8: 'Warme Teriyaki Tempeh Schaal',
+        name_9: 'Pittige Kikkererwten Hummus Wrap',
+        name_10: 'Avocado & Halloumi Toastie',
+        name_11: 'Rokerige BBQ Jackfruit Slider',
+        name_12: 'Zoete Aardappel Friet',
+        name_13: 'Courgette Friet',
+        name_14: 'Gebakken Falafel Hapjes (5 st)',
+        name_15: 'Mini Groenteschotel & Hummus',
+        name_16: 'Klassieke Hummus',
+        name_17: 'Avocado Limoen Crema',
+        name_18: 'Griekse Yoghurt Ranch',
+        name_19: 'Pittige Sriracha Mayo',
+        name_20: 'Pinda Satay Saus',
+        name_21: 'Groen Gloeien Smoothie',
+        name_22: 'Gekoelde Matcha Latte',
+        name_23: 'Fruitgeïnfuseerd Water',
+        name_24: 'Bessenexplosie Smoothie',
+        name_25: 'Citrus Verfrissing',
+        name_26: 'Klassieke Hummus',
+        name_27: 'Avocado Limoen Crema',
+        name_28: 'Griekse Yoghurt Ranch',
+        name_29: 'Pittige Sriracha Mayo',
+        name_30: 'Pinda Saté Saus',
+        name_31: 'Klassieke Hummus',
+        name_32: 'Avocado Limoen Crema',
+        name_33: 'Griekse Yoghurt Ranch',
+        name_34: 'Pittige Sriracha Mayo',
+        name_35: 'Pinda Satay Saus',
+
+        // Idle popup
+        are_you_there: 'Bent u er nog?',
+        order_will_be_cancelled: 'Uw bestelling wordt geannuleerd in',
+        yes_button: 'Ja',
+        diet_vegan: 'VEGANISTISCH',
+        diet_vega: 'VEGETARISCH',
     }
 };
 
@@ -169,6 +259,15 @@ function applyTranslations() {
     // Standard text elements
     document.querySelectorAll('[data-t]').forEach(el => {
         const key = el.getAttribute('data-t');
+        if (t[key]) {
+            el.textContent = t[key];
+        }
+    });
+
+    // Product names
+    document.querySelectorAll('[data-t-name]').forEach(el => {
+        const id = el.getAttribute('data-t-name');
+        const key = 'name_' + id;
         if (t[key]) {
             el.textContent = t[key];
         }
@@ -226,6 +325,7 @@ function saveCart(cart) {
 }
 
 function addToCart(productId, name, price, image, kcal = 0) {
+    const localizedName = t('name_' + productId) || name;
     const cart = getCart();
     const existing = cart.find(item => item.id === productId);
     if (existing) {
@@ -241,6 +341,8 @@ function addToCart(productId, name, price, image, kcal = 0) {
         card.classList.add('add-flash');
         setTimeout(() => card.classList.remove('add-flash'), 400);
     }
+
+    showAddPopup(localizedName + ' ' + t('added_to_order'));
 }
 
 function removeFromCart(productId) {
@@ -518,11 +620,14 @@ function escapeHtml(str) {
    ======================= */
 let idleTimeout;
 let popupTimeout;
+let countdownInterval;
 
 function resetIdleTimer() {
     clearTimeout(idleTimeout);
     clearTimeout(popupTimeout);
+    clearInterval(countdownInterval);
     hideIdlePopup();
+    hideAddPopup();
     idleTimeout = setTimeout(showIdlePopup, 20000); // 20 seconds
 }
 
@@ -530,7 +635,18 @@ function showIdlePopup() {
     const popup = document.getElementById('idle-popup');
     if (popup) {
         popup.style.display = 'flex';
-        popupTimeout = setTimeout(goToIndex, 10000); // 10 seconds after popup
+        // start countdown
+        let remaining = 10;
+        const countdownEl = document.getElementById('idle-countdown');
+        if (countdownEl) countdownEl.textContent = remaining;
+        countdownInterval = setInterval(() => {
+            remaining -= 1;
+            if (countdownEl) countdownEl.textContent = remaining;
+            if (remaining <= 0) {
+                clearInterval(countdownInterval);
+            }
+        }, 1000);
+        popupTimeout = setTimeout(goToIndex, remaining * 1000); // go after countdown
     }
 }
 
@@ -539,6 +655,25 @@ function hideIdlePopup() {
     if (popup) {
         popup.style.display = 'none';
     }
+}
+
+// add popup helpers
+function showAddPopup(message) {
+    const p = document.getElementById('add-popup');
+    const msg = document.getElementById('add-msg');
+    if (p && msg) {
+        msg.textContent = message;
+        p.style.display = 'block';
+        clearTimeout(popupTimeout);
+        popupTimeout = setTimeout(() => {
+            hideAddPopup();
+        }, 2000);
+    }
+}
+
+function hideAddPopup() {
+    const p = document.getElementById('add-popup');
+    if (p) p.style.display = 'none';
 }
 
 function goToIndex() {
