@@ -68,6 +68,6 @@ JavaScript functionality
 
 Error handling through pop-ups
 
-👨‍💻 Author
+👨‍💻 Development team
 
-Developed by Levi Elias
+Developed by Levi Elias & Bas Spies
