@@ -1,0 +1,59 @@
+Testdocument – Bestelsysteem
+1 Inleiding
+
+Dit testdocument beschrijft de functionaliteiten die getest moeten worden in het bestelsysteem. De testen zijn gebaseerd op de verbeteringen en nieuwe functies die gedurende drie ontwikkelingsdagen zijn toegevoegd.
+
+Doel van de testen is controleren of:
+
+De interface correct gestyled is
+
+De knoppen en navigatie goed werken
+
+De pop-ups correct verschijnen
+
+De bestelling goed wordt verwerkt
+
+2 Overzicht van functionaliteiten
+
+
+Dag 1 – UI en basisfunctionaliteit
+
+Lunch en diner sectie beter stylen
+
+Annuleer knop en “Bekijk je order” knop onderaan scherm behouden en laten werken
+
+Pop-up wanneer iemand probeert te betalen met een lege bestelling
+
+Vegan tag duidelijker leesbaar maken
+
+
+Dag 2 – Interface verbeteringen
+
+Lunch en diner sectie verder verbeteren
+
+Slideshow op beginscherm als achtergrond
+
+Knoppen op beginscherm verwijderen en tekst onderin plaatsen
+
+Alle knoppen apart stylen
+
+Navigatiebalk met groter logo
+
+Order scherm beter stylen
+
+Calorieën tonen bij producten
+
+
+Dag 3 – Nieuwe functies
+
+Pop-up: minimaal 1 item selecteren
+
+Pop-up: “Ben je er nog?” bij inactiviteit
+
+Bonnetje tonen na bestelling
+
+Klik op scherm voor volgende klant
+
+Calorie count controleren
+
+Laatste knop bug fix
