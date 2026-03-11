@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 04 feb 2026 om 12:11
+-- Gegenereerd op: 11 mrt 2026 om 10:38
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
@@ -104,7 +104,17 @@ CREATE TABLE `orders` (
   `is_paid` tinyint(1) DEFAULT 1,
   `datetime` datetime DEFAULT current_timestamp(),
   `order_date` date NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `order_status_id`, `pickup_number`, `price_total`, `payment_method`, `is_paid`, `datetime`, `order_date`) VALUES
+(1, 2, 1, 6.00, 'card', 1, '2026-02-13 13:04:29', '2026-02-13'),
+(2, 2, 1, 6.00, 'card', 1, '2026-02-13 13:04:29', '2026-02-13'),
+(3, 2, 1, 7.09, 'card', 1, '2026-03-02 13:32:04', '2026-03-02'),
+(4, 2, 1, 7.09, 'card', 1, '2026-03-02 13:32:04', '2026-03-02');
 
 -- --------------------------------------------------------
 
@@ -120,6 +130,16 @@ CREATE TABLE `order_product` (
   `price` decimal(6,2) NOT NULL,
   `quantity` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `order_product`
+--
+
+INSERT INTO `order_product` (`order_product_id`, `order_id`, `product_id`, `product_name`, `price`, `quantity`) VALUES
+(1, 1, 4, 'Overnight Oats: Apple Pie Style', 5.50, 1),
+(2, 2, 4, 'Overnight Oats: Apple Pie Style', 5.50, 1),
+(3, 3, 2, 'Garden Breakfast Wrap', 6.50, 1),
+(4, 4, 2, 'Garden Breakfast Wrap', 6.50, 1);
 
 -- --------------------------------------------------------
 
@@ -190,17 +210,7 @@ INSERT INTO `products` (`product_id`, `category_id`, `image_id`, `name`, `descri
 (22, 6, 22, 'Iced Matcha Latte', 'Matcha with almond milk', 3.00, 90, 1, 6),
 (23, 6, 23, 'Fruit Infused Water', 'Lemon, strawberry, cucumber', 1.50, 0, 1, 6),
 (24, 6, 24, 'Berry Blast Smoothie', 'Mixed berries with almond milk', 3.80, 140, 1, 6),
-(25, 6, 25, 'Citrus Cooler', 'Orange juice, sparkling water', 3.00, 90, 1, 6),
-(26, 5, 16, 'Classic Hummus', 'Smooth chickpea hummus, perfect for dipping', 1.00, 120, 1, 5),
-(27, 5, 17, 'Avocado Lime Crema', 'Creamy avocado with a hint of lime, great with veggies', 1.00, 110, 1, 5),
-(28, 5, 18, 'Greek Yogurt Ranch', 'Tangy Greek yogurt with herbs, ideal as a dip', 1.00, 90, 1, 5),
-(29, 5, 19, 'Spicy Sriracha Mayo', 'Spicy and creamy sriracha mayo, adds kick to dishes', 1.00, 180, 1, 5),
-(30, 5, 20, 'Peanut Satay Sauce', 'Rich peanut sauce, perfect for dipping or drizzling', 1.00, 200, 1, 5),
-(31, 5, 16, 'Classic Hummus', 'Smooth chickpea hummus, perfect for dipping', 1.00, 120, 1, 5),
-(32, 5, 17, 'Avocado Lime Crema', 'Creamy avocado with a hint of lime, great with veggies', 1.00, 110, 1, 5),
-(33, 5, 18, 'Greek Yogurt Ranch', 'Tangy Greek yogurt with herbs, ideal as a dip', 1.00, 90, 1, 5),
-(34, 5, 19, 'Spicy Sriracha Mayo', 'Spicy and creamy sriracha mayo, adds kick to dishes', 1.00, 180, 1, 5),
-(35, 5, 20, 'Peanut Satay Sauce', 'Rich peanut sauce, perfect for dipping or drizzling', 1.00, 200, 1, 5);
+(25, 6, 25, 'Citrus Cooler', 'Orange juice, sparkling water', 3.00, 90, 1, 6);
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -267,13 +277,13 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT voor een tabel `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT voor een tabel `order_product`
 --
 ALTER TABLE `order_product`
-  MODIFY `order_product_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT voor een tabel `order_status`
