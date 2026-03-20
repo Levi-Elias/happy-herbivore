@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
+$servername = "mysql_db";
 $dbname = "kiosk";
 $username = "root";
-$password = "";
+$password = "root";
 
 // $servername = "localhost";
 // $dbname = "u240669_kiosk";
